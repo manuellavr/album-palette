@@ -1,6 +1,7 @@
 import React from "react";
-import AlbumCard from './AlbumCard.js';
+import AlbumCard from './components/AlbumCard.js';
 import axios from 'axios';
+import { Button, Container, Row, Col } from 'react-bootstrap';
 import qs from 'qs';
 
 export default class SearchAlbums extends React.Component{
@@ -65,6 +66,10 @@ export default class SearchAlbums extends React.Component{
                 albums: res.data.albums.items
             })
 
+            this.setState({
+                query: ""
+            })
+
         })
         .catch(err => {
             console.error(err) // TODO: handle this; get new token
@@ -88,11 +93,16 @@ export default class SearchAlbums extends React.Component{
                         />
                     <button className="button" type="submit">Search</button>
                 </form>
-                <div className="card-list">
+                <Container> 
+                <Row>
                     {this.state.albums.map(album => (
-                       <AlbumCard album={album} key={album.id} palette={album.palette}/>
+                       <Col sm={6} lg={3} className="card-list">
+                        <AlbumCard album={album} key={album.id} palette={album.palette}/>
+                       </Col>
                     ))}
-                </div>
+                
+                </Row>
+                </Container>
             </>
         )
     }
