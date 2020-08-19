@@ -50,17 +50,17 @@ p {
 
 .palette{
     padding-top: 10px;
-    padding-left: 6px;
     position: absolute;
-    bottom: 60px;
+    bottom: 30px;
 }
 
 .palette__color {
     width: 50px;
     height: 50px;
     border-radius: 50px;
+    margin-right: 2px;
+    margin-left: 2px;
     display: inline-block;
-    padding-top: 15px;
     text-align: center;
     color: white;
     font-size: 1rem;
@@ -74,7 +74,7 @@ p {
 .form {
     display:grid;
     grid-template-columns: auto 1fr auto;
-    grid-gap: 1rem;
+    grid-gap: 2rem;
     align-items: center;
     width: 100%;
 }
@@ -131,9 +131,9 @@ p {
 
 .button--see{
     position: absolute;
-    bottom: 20px;
+    bottom: 8px;
     right: 22px;
-    font-size: 3.5rem;
+    font-size: 1.15rem;
     font-weight: 600;
     background: none;
     border: none;
@@ -143,6 +143,12 @@ p {
  .button--see:focus, .scroll-btn:focus{
     outline: none;
  }
+
+
+.center{
+    justify-content: center;
+    align-items: center;
+}
 
 .card-list {
     margin-top: 20px;
@@ -193,6 +199,34 @@ p {
     cursor: pointer;
     width: 15rem;
     transition: background-color 250ms;   
+}
+
+.overlay {
+  position: relative;
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  opacity: 0;
+  top: 0;
+  text-align: center;
+  transition: .5s ease;
+  background-color: rgba(0,0,0,0.50);
+}
+
+.palette__color:hover .overlay {
+  opacity: 1;
+}
+
+.text {
+  color: white;
+  font-size: 1.1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 @media(max-width:786px){

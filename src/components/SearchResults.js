@@ -2,9 +2,6 @@ import React from 'react';
 import AlbumCard from './AlbumCard.js';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
-import Navbar from './Navbar.js';
-import SearchBar from './SearchBar.js';
 
 export default class SearchResults extends React.Component{	
 

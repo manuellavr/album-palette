@@ -1,11 +1,9 @@
 import React from "react";
 import axios from 'axios';
-import SearchBar from './SearchBar.js';
 import SearchResults from './SearchResults.js';    
 import { Container, Row, Col } from 'react-bootstrap';
 import qs from 'qs';
 import album from '../imgs/palette.png';
-import {Link, Redirect} from 'react-router-dom'; 
 import {Element, scroller, animateScroll as scroll} from 'react-scroll';
 
 export default class SearchAlbums extends React.Component{
@@ -104,7 +102,7 @@ export default class SearchAlbums extends React.Component{
     render(){
         return (
             <>  
-                <Container> 
+                <Container className="center"> 
                 <Row>
                 <Col xs={12} sm={6}>
                 <h1 className="title">albumpalette</h1>
@@ -113,8 +111,9 @@ export default class SearchAlbums extends React.Component{
                 <Row className="content-body">
                 <Col xs={12} sm={6}>
                 <p className="large-txt">Get inspired by color palettes based on your favorite albums' cover art</p>
-                <p className="medium-txt">A website developed with Spotify's Web API and the XXXXX javascript library</p>
-                <img src={album} alt="a colorful square with geometric figures on top of it simulating the image of an album cover. its associated color palette is below the square." className="img-reduced"></img>
+                <p className="medium-txt">A website developed with <a href="https://developer.spotify.com/documentation/web-api/" target="__blank">
+                Spotify's Web API</a> and the <a href="https://www.npmjs.com/package/get-image-colors" target="__blank">get-image-colors</a> javascript library</p>
+                <img src={album} alt="a colorful square with geometric shapes simulating an album cover. its associated color palette is below the square." className="img-reduced"></img>
                 </Col>
                 <Col xs={12} sm={6}>
                 <>
