@@ -1,24 +1,22 @@
-import React from "react";
-import AlbumCard from './components/AlbumCard.js';
+import React from 'react';
 import axios from 'axios';
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import {Redirect} from 'react-router-dom';
 import qs from 'qs';
 
-export default class SearchAlbums extends React.Component{
-    
-    constructor(){
-        super();
-        this.searchAlbums = this.searchAlbums.bind(this);
-        this.onChangeQuery = this.onChangeQuery.bind(this);
+export default class SearchBar extends React.Component{
 
-        this.state={
-            query: '',
-            albums: [],
-            accessToken: ''
-        }
-    }
+	constructor(props){
+		super(props)
+		this.searchAlbums = this.searchAlbums.bind(this)
+		this.onChangeQuery = this.onChangeQuery.bind(this)
+		this.state={
+			query: "",
+			albums: [],
+			accessToken: ""		
+		}
+	}
 
-    componentDidMount(){
+	  componentDidMount(){
 
         const client_id = process.env.REACT_APP_CLIENT_ID;
         const client_secret = process.env.REACT_APP_CLIENT_SECRET;
@@ -47,7 +45,7 @@ export default class SearchAlbums extends React.Component{
 
     }
 
-    searchAlbums(e) {
+	searchAlbums(e) {
 
         e.preventDefault();       
         
@@ -63,13 +61,10 @@ export default class SearchAlbums extends React.Component{
         .then(res => {
 
             this.setState({
-                albums: res.data.albums.items
-            })
-
-            this.setState({
+                albums: res.data.albums.items,
                 query: ""
             })
-
+        	console.log(res.data.albums.items)
         })
         .catch(err => {
             console.error(err) // TODO: handle this; get new token
@@ -82,28 +77,17 @@ export default class SearchAlbums extends React.Component{
         })
     }
 
-    render(){
-        return (
-            <>
-                <form className="form" onSubmit={this.searchAlbums}>
-                    <label className="label" htmlFor="query">Album or Artist Name</label>
+	render(){
+		return(
+			<>
+			<form className="form" onSubmit={this.searchAlbums}>
                     <input className="input" type="text" name="query"
-                        placeholder="i.e. Beyoncé"
+                        placeholder="album or artist's name"
                         value={this.state.query} onChange={this.onChangeQuery}
                         />
-                    <button className="button" type="submit">Search</button>
-                </form>
-                <Container> 
-                <Row>
-                    {this.state.albums.map(album => (
-                       <Col sm={6} lg={3} className="card-list">
-                        <AlbumCard album={album} key={album.id} palette={album.palette}/>
-                       </Col>
-                    ))}
-                
-                </Row>
-                </Container>
-            </>
-        )
-    }
+                   <button className="button" type="submit">search</button>
+            </form>
+			</>
+		)
+	}
 }

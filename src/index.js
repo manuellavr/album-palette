@@ -1,14 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SearchAlbums from "./searchAlbums.js";
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import SearchAlbums from "./components/SearchAlbums.js";
+import SearchResults from "./components/SearchResults.js"; 
+import qs from 'qs';
+import axios from 'axios';
 
 class Main extends React.Component {
+
   render() {
     return (
-      <div className="container">
-        <h1 className="title">Album Search</h1>
-        <SearchAlbums/>
-      </div>
+    	<Router>
+    	<Switch>
+    		<SearchAlbums />
+    	</Switch>
+    	</Router>
+     
     );
   }
 }

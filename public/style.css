@@ -13,38 +13,70 @@ body {
     color: #333;
 }
 
+b{
+    font-weight: 600 !important; 
+}
+
 p {
     font-size: 1.6rem;
 }
 
+.large-txt{
+    font-size: 2.5rem;
+}
+
+.img-reduced{
+    width: 30%;
+    margin-top: 40px;
+}
+
+.front-page{
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #DDDBD8;
+    min-height: 100vh;
+}
+
 .medium-txt {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
 }
 
 .container {
     margin: 0 auto;
-    max-width:1000px;
     padding: 40px;
 }
 
-.paletteBox {
-    width: 60px;
-    height: 60px;
+.content-body{
+    margin-top: 40px;
+}
+
+.palette{
+    padding-top: 10px;
+    padding-left: 6px;
+    position: absolute;
+    bottom: 60px;
+}
+
+.palette__color {
+    width: 50px;
+    height: 50px;
     border-radius: 50px;
     display: inline-block;
-    padding-top: 20px;
+    padding-top: 15px;
     text-align: center;
     color: white;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .title {
     font-size: 4.4rem;
-    text-align: center
+    text-align: left
 }
 
 .form {
     display:grid;
+    grid-template-columns: auto 1fr auto;
+    grid-gap: 1rem;
+    align-items: center;
+    width: 100%;
 }
 
 .label {
@@ -53,23 +85,38 @@ p {
     text-transform: uppercase;
 }
 
+.navbar{
+    padding-bottom: 40px;
+}
+
 .input {
     font-size: 1.6rem;
     padding: 0.5rem 2rem;
     line-height: 2.8rem;
     border-radius: 20px;
     border: 1px solid #ddd;
+    width: 40rem;
     margin-bottom: 1rem;
 }
 
+.input:focus{
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
 .button {
     background-color: rgba(0,0,0,0.75);
     color: white;
-    padding: 1rem 2rem;
+    padding: 0.5rem 2rem;
+    line-height: 2.8rem;
     border: 1px solid rgba(0,0,0,0.75);
     border-radius: 20px;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     cursor: pointer;
+    width: 100px;
+    margin-bottom: 1rem;
     transition: background-color 250ms;
 }
 
@@ -77,37 +124,98 @@ p {
     background-color: rgba(0,0,0,0.85);
 }
 
-@media (min-width:786px){
-    .form {
-        grid-template-columns: auto 1fr auto;
-        grid-gap: 1rem;
-        align-items: center;
-    }
-    
-    .input {
-        margin-bottom: 0;
-    }
+.button:focus{
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
 }
+
+.button--see{
+    position: absolute;
+    bottom: 20px;
+    right: 22px;
+    font-size: 3.5rem;
+    font-weight: 600;
+    background: none;
+    border: none;
+    border-radius: 25px;
+}
+
+ .button--see:focus, .scroll-btn:focus{
+    outline: none;
+ }
 
 .card-list {
-    margin-top: 4rem;
+    margin-top: 20px;
 }
-
 
 .card {
     padding: 2rem 2rem;
-    border-radius: 10px;
+    border-radius: 25px !important;
     box-shadow: 1px 2px 2px rgba(0,0,0,0.25);
     margin-bottom: 2rem;
-    background-color: white;
+    min-height: 630px; /**650px**/
+    line-height: 25px;
 }
 
-.card--title {
+.card__title {
+    padding-top: 10px;
     margin-bottom: 0.5rem;
-    font-size: 3.2rem;
+    font-size: 1.8rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
-.card--image {
+.card__artists{
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;  
+      overflow: hidden;
+}
+
+.card__image {
     margin: 0 auto;
     max-width: 100%;
+}
+
+.results{
+    padding-top: 80px;
+}
+
+.scroll-btn{
+    background-color: rgba(0,0,0,0.75);
+    color: white;
+    padding: 1rem 1rem;
+    margin-bottom: 20px;
+    border: 1px solid rgba(0,0,0,0.75);
+    border-radius: 30px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 15rem;
+    transition: background-color 250ms;   
+}
+
+@media(max-width:786px){
+    .form{
+        margin-top: 40px;
+    }
+
+    .input{
+        width: 50vw;
+    }
+
+    .content-body{
+        display: block !important;
+    }
+
+    .palette{
+        padding-left: 0;
+        margin-right: 1rem;
+    }
+}
+
+@media(max-width: 1199px){
+    .palette{
+        position: static;   
+    }
 }
