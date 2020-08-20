@@ -79,7 +79,7 @@ export default class SearchAlbums extends React.Component{
               duration: 700,
               delay: 120,
               smooth: true,
-              offset: 90 // Scrolls to element + 50 pixels down the page
+              offset: 100
         })
 
         })
@@ -102,7 +102,7 @@ export default class SearchAlbums extends React.Component{
     render(){
         return (
             <>  
-                <Container className="center"> 
+                <Container> 
                 <Row>
                 <Col xs={12} sm={6}>
                 <h1 className="title">albumpalette</h1>
@@ -131,7 +131,9 @@ export default class SearchAlbums extends React.Component{
                     <SearchResults albums={this.state.albums} token={this.state.accessToken} />
                 </div>
                 </Element>
-                {this.state.albums.length > 0 ? <button className="scroll-btn float-right" onClick={this.scrollToTop}>Scroll to top</button> : null}
+                <Row className="center-content">
+                {this.state.albums.length > 0 ? <button className="scroll-btn" onClick={this.scrollToTop}>scroll to top</button> : null}
+                </Row>
                 </Container>
             </>
         )

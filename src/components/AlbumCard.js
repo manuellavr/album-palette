@@ -2,6 +2,9 @@ import React from "react";
 import getColors from 'get-image-colors';
 import loading from '../imgs/loading.gif';
 import logo from '../imgs/Spotify_Logo_RGB_Green.png';
+import copy from '../imgs/copy_icon.png';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 export default class AlbumCard extends React.Component{
     
@@ -56,7 +59,7 @@ export default class AlbumCard extends React.Component{
              <div className="card"  >           
                 <div className="card__content">   
                  <img className="card__image"
-                    src={this.props.album.images[1].url}
+                    src={this.props.album.images[0].url}
                     alt={this.props.album.name + ' cover'}
                 />              
                 <h3 className="card__title" title={this.props.album.name}>{this.props.album.name}</h3>
@@ -64,12 +67,18 @@ export default class AlbumCard extends React.Component{
                 <a href={this.props.album.external_urls.spotify} className="medium-txt" target="_blank" rel="noopener noreferrer">
                     Listen to this album on <img src={logo} alt="spotify's green logo" style={{width: 100}}/>
                 </a>
-                <div className="palette">
+                <div className="palette center-content">
                     {this.state.isLoading ? <img src={loading} alt="animated symbol that represents content loading" key={this.props.album.id}/> : this.state.palette.map(color => (
                         <div className="palette__color" style={{backgroundColor: color}} key={color}><div className="overlay"><div className="text">{color.toUpperCase()}</div></div></div>
                     ))}                   
                 </div>
-                <button className="button--see" onClick={this.copyPalette}>copy hex codes!</button> 
+                <OverlayTrigger trigger="focus" placement="right" delay={{hide: 1500}} overlay={
+                	<Tooltip>
+                		Copied!
+                	</Tooltip>
+                }>
+                <button className="button--see" onClick={this.copyPalette}>copy hex codes! <img src={copy} style={{width: 15}}/></button> 
+                </OverlayTrigger>
                 </div>
             </div>
         )   

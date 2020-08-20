@@ -7,9 +7,9 @@ export default class SearchResults extends React.Component{
 
 	render(){
 		return (	<div>
-					<Row>
-					{this.props.albums.map(album => (
-                     <Col sm={6} lg={4} xl={3} className="card-list" key={album.id}>
+					<Row className="center-content">
+					{this.props.albums.filter(album => album.images[0]).map(album => (
+                     <Col xs={10} sm={6} lg={4} xl={3} className="card-list" key={album.id}>
                         <AlbumCard album={album} key={album.id} palette={album.palette}/>
                      </Col>
                     ))}  
