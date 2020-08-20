@@ -77,7 +77,7 @@ export default class AlbumCard extends React.Component{
                 		Copied!
                 	</Tooltip>
                 }>
-                <button className="button--see" onClick={this.copyPalette}>copy hex codes! <img src={copy} style={{width: 15}}/></button> 
+                <button className="button--see" onClick={this.copyPalette}>copy hex codes! <img src={copy} alt="icon with two paper sheets representing a copy" style={{width: 15}}/></button> 
                 </OverlayTrigger>
                 </div>
             </div>
