@@ -43,7 +43,7 @@ export default class AlbumCard extends React.Component{
 
 
     copyPalette = () =>{
-       const palette = this.state.palette.map(color => color.toUpperCase()).join(" ");
+        const palette = this.state.palette.map(color => color.toUpperCase()).join(" ");
         var dummy = document.createElement("input");
         document.body.appendChild(dummy);
         dummy.value = palette;
@@ -54,7 +54,6 @@ export default class AlbumCard extends React.Component{
 
 
     render(){             
-
         return (
              <div className="card"  >           
                 <div className="card__content">   

@@ -26,7 +26,7 @@ p {
 }
 
 .img-reduced{
-    width: 30%;
+    width: 85%;
     margin-top: 40px;
 }
 
@@ -73,7 +73,7 @@ p {
 .form {
     display:grid;
     grid-template-columns: auto 1fr auto;
-    grid-gap: 2rem;
+    grid-gap: 1rem;
     align-items: center;
     width: 100%;
 }
@@ -108,7 +108,7 @@ p {
 .button {
     background-color: rgba(0,0,0,0.75);
     color: white;
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 1rem;
     line-height: 2.8rem;
     border: 1px solid rgba(0,0,0,0.75);
     border-radius: 20px;
@@ -242,7 +242,11 @@ p {
     }
 
     .input{
-        width: 50vw;
+        width: 63vw;
+    }
+
+    .img-reduced{
+        width: 100%;
     }
 
     .content-body{
@@ -256,6 +260,10 @@ p {
 
 @media(max-width: 1199px){
 
+    .button{
+        width: 80px;
+    }
+
     .palette{
         position: static;
         padding-top: 12px;
@@ -264,6 +272,22 @@ p {
 
 @media(max-width: 396px){
     .button--see{
-        margin-right: 3rem;
+        margin-right: 2.4rem;
+    }
+}
+
+@media(max-width: 320px){
+    .button--see{
+        margin-right: 1.7rem;
+    }
+
+    .palette{
+        margin-top: 20px;
+    }
+
+    .palette__color, .overlay{
+        height: 43px;
+        width: 43px;
+        border-radius: 43px;
     }
 }

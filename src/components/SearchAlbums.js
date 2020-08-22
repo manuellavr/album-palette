@@ -3,7 +3,7 @@ import axios from 'axios';
 import SearchResults from './SearchResults.js';    
 import { Container, Row, Col } from 'react-bootstrap';
 import qs from 'qs';
-import album from '../imgs/palette.png';
+import album from '../imgs/palettes.png';
 import {Element, scroller, animateScroll as scroll} from 'react-scroll';
 
 export default class SearchAlbums extends React.Component{
@@ -22,10 +22,7 @@ export default class SearchAlbums extends React.Component{
     }
 
     componentDidMount(){
-
         this.getNewToken();
-        console.log("montou");
-
     }
 
     getNewToken(){
@@ -79,9 +76,8 @@ export default class SearchAlbums extends React.Component{
               duration: 700,
               delay: 120,
               smooth: true,
-              offset: 100
-        })
-
+              offset: 85
+            })
         })
         .catch(err => {
             this.getNewToken()// TODO: handle this; get new token
@@ -113,7 +109,7 @@ export default class SearchAlbums extends React.Component{
                 <p className="large-txt">Get inspired by color palettes based on your favorite albums' cover art</p>
                 <p className="medium-txt">A website developed with <a href="https://developer.spotify.com/documentation/web-api/" target="__blank">
                 Spotify's Web API</a> and the <a href="https://www.npmjs.com/package/get-image-colors" target="__blank">get-image-colors</a> javascript library</p>
-                <img src={album} alt="a colorful square with geometric shapes simulating an album cover. its associated color palette is below the square." className="img-reduced"></img>
+                <img className="img-reduced" src={album} alt="a colorful square with geometric shapes simulating an album cover. its associated color palette is below the square."></img>
                 </Col>
                 <Col xs={12} sm={6}>
                 <>
@@ -127,7 +123,7 @@ export default class SearchAlbums extends React.Component{
                 </>
                 </Col>
                 </Row>
-                <Element name="results"><div className="results" id="results">
+                <Element name="results"><div className="results">
                     <SearchResults albums={this.state.albums} token={this.state.accessToken} />
                 </div>
                 </Element>
