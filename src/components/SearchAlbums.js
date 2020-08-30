@@ -108,7 +108,7 @@ export default class SearchAlbums extends React.Component{
                 <Col xs={12} sm={6}>
                 <p className="large-txt">Get inspired by color palettes based on your favorite albums' cover art</p>
                 <p className="medium-txt">A website developed with <a href="https://developer.spotify.com/documentation/web-api/" target="__blank">
-                Spotify's Web API</a> and the <a href="https://www.npmjs.com/package/get-image-colors" target="__blank">get-image-colors</a> javascript library</p>
+                Spotify's Web API</a> and the <a href="https://www.npmjs.com/package/get-image-colors" target="__blank">get-image-colors</a> javascript library. <br/><br/><p>Made by: <a href="https://github.com/manuellavr">manuella</a></p></p>
                 <img className="img-reduced" src={album} alt="a colorful square with geometric shapes simulating an album cover. its associated color palette is below the square."></img>
                 </Col>
                 <Col xs={12} sm={6}>
