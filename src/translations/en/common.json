@@ -11,5 +11,6 @@
     "scroll_btn": "scroll to top",
     "artists": "Artist(s)",
     "listen": "Listen to this album on ",
+    "copy": "copy hex codes!",
     "copied": "copied!"
 }
