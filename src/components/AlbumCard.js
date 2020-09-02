@@ -5,7 +5,7 @@ import logo from '../imgs/Spotify_Logo_RGB_Green.png';
 import copy from '../imgs/copy_icon.png';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
-import { withTranslation, Trans } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 class AlbumCard extends React.Component{
     
