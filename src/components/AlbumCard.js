@@ -5,8 +5,9 @@ import logo from '../imgs/Spotify_Logo_RGB_Green.png';
 import copy from '../imgs/copy_icon.png';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import { withTranslation, Trans } from 'react-i18next';
 
-export default class AlbumCard extends React.Component{
+class AlbumCard extends React.Component{
     
     constructor(props){    
 
@@ -53,7 +54,8 @@ export default class AlbumCard extends React.Component{
     }
 
 
-    render(){             
+    render(){       
+        const t = this.props.t      
         return (
              <div className="card"  >           
                 <div className="card__content">   
@@ -62,25 +64,30 @@ export default class AlbumCard extends React.Component{
                     alt={this.props.album.name + ' cover'}
                 />              
                 <h3 className="card__title" title={this.props.album.name}>{this.props.album.name}</h3>
-                <p className="card__artists" title={this.state.artists}><b>Artist(s):</b> {this.state.artists}</p>
+                
+                <p className="card__artists" title={this.state.artists}><b>{t('artists')}:</b> {this.state.artists}</p>
                 <a href={this.props.album.external_urls.spotify} className="medium-txt" target="_blank" rel="noopener noreferrer">
-                    Listen to this album on <img src={logo} alt="spotify's green logo" style={{width: 100}}/>
+                    {t('listen')} <img src={logo} alt="spotify's green logo" style={{width: 100}}/>
                 </a>
+
                 <div className="palette center-content">
-                    {this.state.isLoading ? <img src={loading} alt="animated symbol that represents content loading" key={this.props.album.id}/> : this.state.palette.map(color => (
+                    {this.state.isLoading ? <img src={loading} alt={t('alt.loading')} key={this.props.album.id}/> : this.state.palette.map(color => (
                         <div className="palette__color" style={{backgroundColor: color}} key={color}><div className="overlay"><div className="text">{color.toUpperCase()}</div></div></div>
                     ))}                   
                 </div>
+
                 <OverlayTrigger trigger="focus" placement="right" delay={{hide: 1500}} overlay={
                 	<Tooltip>
-                		Copied!
+                		{t('copied')}
                 	</Tooltip>
                 }>
-                <button className="button--see" onClick={this.copyPalette}>copy hex codes! <img src={copy} alt="icon with two paper sheets representing a copy" style={{width: 15}}/></button> 
+                <button className="button--see" onClick={this.copyPalette}>{t('copy')} <img src={copy} alt={t('alt.copy')} style={{width: 15}}/></button> 
                 </OverlayTrigger>
+
                 </div>
             </div>
         )   
     }
 }
 
+export default withTranslation('common')(AlbumCard)

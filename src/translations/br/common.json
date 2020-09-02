@@ -1,0 +1,16 @@
+{
+    "main_txt": "Se inspire em paletas de cores baseadas nas capas dos seus álbums favoritos",
+    "text": "Um site desenvolvido com a <1>API Web do Spotify</1> e a biblioteca <3>get-image-colors</3>",
+    "alt": {
+    	"art": "três quadrados coloridos com formas geométricas sobrepostas, simulando capas de álbum, cada um com suas respectivas paletas de cores embaixo.",
+    	"copy": "ícone com duas folhas de papel representando uma cópia",
+    	"load": "carregando"
+    },
+    "search_placeholder": "nome do álbum ou do artista",
+    "search_btn": "buscar",
+    "scroll_btn": "voltar para o topo",
+    "artists": "Artista(s)",
+    "listen": "Ouça esse álbum no ",
+    "copy": "copiar códigos das cores!",
+    "copied": "copiado!"
+ }

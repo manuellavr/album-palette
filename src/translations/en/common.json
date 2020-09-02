@@ -1,0 +1,15 @@
+{
+    "main_txt": "Get inspired by color palettes based on your favorite albums' cover art",
+    "text": "A website developed with <1>Spotify's Web API</1> and the <3>get-image-colors</3> javascript library",
+    "alt": {
+    	"art": "three colorful squares with geometric shapes on top simulating an album cover. their associated color palette is below each square.",
+    	"copy": "icon with two paper sheets representing a copy",
+    	"load": "loading symbol"
+    },
+    "search_placeholder": "album or artist's name",
+    "search_btn": "search",
+    "scroll_btn": "scroll to top",
+    "artists": "Artist(s)",
+    "listen": "Listen to this album on ",
+    "copied": "copied!"
+}

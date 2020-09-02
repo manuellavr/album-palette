@@ -39,11 +39,6 @@ p {
     font-size: 1.6rem;
 }
 
-.container {
-    margin: 0 auto;
-    padding: 40px;
-}
-
 .content-body{
     margin-top: 40px;
 }
@@ -128,6 +123,14 @@ p {
     box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
 }
 
+.button--lang{
+    margin-top: 30px;
+    background: none;
+    border: none;
+    border-radius: 50px;
+    font-size: 2rem;
+}
+
 .button--see{
     padding-top: 5px;
     position: absolute;
@@ -146,18 +149,8 @@ p {
     background-color: rgba(0,0,0,.05);
 }
 
- .button--see:focus, .scroll-btn:focus{
+.button--see:focus, .scroll-btn:focus, .button--lang:focus{
     outline: none;
- }
-
-
-.center-content{
-    justify-content: center;
-    align-items: center;
-}
-
-.card-list {
-    margin-top: 20px;
 }
 
 .card {
@@ -167,6 +160,10 @@ p {
     margin-bottom: 2rem;
     min-height: 650px; /**650px**/
     line-height: 25px;
+}
+
+.card-list {
+    margin-top: 20px;
 }
 
 .card__title {
@@ -192,6 +189,11 @@ p {
     max-width: 100%;
 }
 
+.center-content{
+    justify-content: center;
+    align-items: center;
+}
+
 .results{
     padding-top: 80px;
 }
@@ -200,6 +202,8 @@ p {
     background-color: rgba(0,0,0,0.75);
     color: white;
     padding: 1rem 1rem;
+    margin-top: 10px;
+    margin-bottom: 30px;
     border: 1px solid rgba(0,0,0,0.75);
     border-radius: 30px;
     font-size: 1.5rem;
@@ -259,7 +263,6 @@ p {
 }
 
 @media(max-width: 1199px){
-
     .button{
         width: 80px;
     }

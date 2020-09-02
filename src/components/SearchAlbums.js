@@ -5,8 +5,9 @@ import { Container, Row, Col } from 'react-bootstrap';
 import qs from 'qs';
 import album from '../imgs/palettes.png';
 import {Element, scroller, animateScroll as scroll} from 'react-scroll';
+import {withTranslation, Trans} from "react-i18next";
 
-export default class SearchAlbums extends React.Component{
+class SearchAlbums extends React.Component{
     
     constructor(){
         super();
@@ -17,7 +18,8 @@ export default class SearchAlbums extends React.Component{
         this.state={
             query: '',
             albums: [],
-            accessToken: ''
+            accessToken: '',
+            isPTBR: true
         }
     }
 
@@ -80,7 +82,8 @@ export default class SearchAlbums extends React.Component{
             })
         })
         .catch(err => {
-            this.getNewToken()// TODO: handle this; get new token
+            console.error(err)
+            this.getNewToken()
         })
 
     }
@@ -96,42 +99,71 @@ export default class SearchAlbums extends React.Component{
     }
 
     render(){
+        const { t, i18n } = this.props
+
         return (
             <>  
-                <Container> 
+                <Container fluid className="top">
                 <Row>
-                <Col xs={12} sm={6}>
-                <h1 className="title">albumpalette</h1>
-                </Col>
-                </Row>    
-                <Row className="content-body">
-                <Col xs={12} sm={6}>
-                <p className="large-txt">Get inspired by color palettes based on your favorite albums' cover art</p>
-                <p className="medium-txt">A website developed with <a href="https://developer.spotify.com/documentation/web-api/" target="__blank">
-                Spotify's Web API</a> and the <a href="https://www.npmjs.com/package/get-image-colors" target="__blank">get-image-colors</a> javascript library. <br/><br/><p>Made by: <a href="https://github.com/manuellavr">manuella</a></p></p>
-                <img className="img-reduced" src={album} alt="a colorful square with geometric shapes simulating an album cover. its associated color palette is below the square."></img>
-                </Col>
-                <Col xs={12} sm={6}>
-                <>
-                <form className="form float-right" onSubmit={this.searchAlbums}>
-                        <input className="input" type="text" name="query"
-                            placeholder="album or artist's name"
-                            value={this.state.query} onChange={this.onChangeQuery}
-                            />
-                       <button className="button" type="submit">search</button>
-                </form>
-                </>
+                <Col xs={12}>
+                    <button className="float-right button--lang" onClick={() => {
+                        this.setState(prevState => {
+                        return({
+                            isPTBR: !prevState.isPTBR
+                        })
+                        })
+                        i18n.changeLanguage(!this.state.isPTBR ? 'br' : 'en')
+                    }}>
+                        {this.state.isPTBR ? "EN" : "PT-BR"}
+                    </button>
                 </Col>
                 </Row>
+                </Container>
+
+                <Container> 
+
+                <Row>
+                <Col md={12}>
+                <h1 className="title">albumpalette</h1>
+                </Col>
+                </Row>
+
+                <Row className="content-body">
+                <Col xs={12} sm={6}>
+                <p className="large-txt">{t('main_txt')}</p>
+                <p className="medium-txt"> 
+                <Trans t={t} i18nKey="text">
+                    Um site desenvolvido com a <a href="https://developer.spotify.com/documentation/web-api/" target="__blank">
+                    API Web do Spotify</a> e a biblioteca <a href="https://www.npmjs.com/package/get-image-colors" target="__blank">get-image-colors</a>
+                </Trans>
+                </p>
+                <br/>
+                <br/>
+                <img className="img-reduced" src={album} alt={t('alt.art')}></img>
+                </Col>
+                <Col xs={12} sm={6}>
+                <form className="form float-right" onSubmit={this.searchAlbums}>
+                        <input className="input" type="text" name="query"
+                            placeholder={t('search_placeholder')}
+                            value={this.state.query} onChange={this.onChangeQuery}
+                            />
+                       <button className="button" type="submit">{t('search_btn')}</button>
+                </form>
+                </Col>
+                </Row>
+
                 <Element name="results"><div className="results">
                     <SearchResults albums={this.state.albums} token={this.state.accessToken} />
                 </div>
                 </Element>
+                
                 <Row className="center-content">
-                {this.state.albums.length > 0 ? <button className="scroll-btn" onClick={this.scrollToTop}>scroll to top</button> : null}
+                {this.state.albums.length > 0 ? <button className="scroll-btn" onClick={this.scrollToTop}>{t('scroll_btn')}</button> : null}
                 </Row>
                 </Container>
             </>
         )
     }
 }
+
+export default withTranslation('common')(SearchAlbums)
