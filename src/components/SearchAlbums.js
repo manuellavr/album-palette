@@ -98,22 +98,28 @@ class SearchAlbums extends React.Component{
             scroll.scrollToTop()
     }
 
+    onChangeLang = () =>{
+        
+        const { i18n } = this.props
+
+        this.setState(prevState => {
+                return({
+                    isPTBR: !prevState.isPTBR
+                })
+        })
+        
+        i18n.changeLanguage(!this.state.isPTBR ? 'br' : 'en')
+    }
+
     render(){
-        const { t, i18n } = this.props
+        const { t } = this.props
 
         return (
             <>  
                 <Container fluid className="top">
                 <Row>
                 <Col xs={12}>
-                    <button className="float-right button--lang" onClick={() => {
-                        this.setState(prevState => {
-                        return({
-                            isPTBR: !prevState.isPTBR
-                        })
-                        })
-                        i18n.changeLanguage(!this.state.isPTBR ? 'br' : 'en')
-                    }}>
+                    <button className="float-right button--lang" onClick={ this.onChangeLang }>
                         {this.state.isPTBR ? "EN" : "PT-BR"}
                     </button>
                 </Col>
