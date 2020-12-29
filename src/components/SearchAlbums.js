@@ -153,8 +153,8 @@ const SearchAlbums = ({ i18n, t }) => {
                         <p className="large-txt">{t('main_txt')}</p>
                         <p className="medium-txt">
                             <Trans t={t} i18nKey="text">
-                                Um site desenvolvido com a <a href={SPOTIFY_WEB_API_URL} target="__blank">
-                                    API Web do Spotify</a> e o pacote <a href={GET_IMAGE_COLORS_URL} target="__blank">get-image-colors</a>
+                                Um site desenvolvido com a <a className="link" href={SPOTIFY_WEB_API_URL} target="__blank">
+                                    API Web do Spotify</a> e o pacote <a className="link" href={GET_IMAGE_COLORS_URL} target="__blank">get-image-colors</a>
                             </Trans>
                         </p>
                         <br />
@@ -164,6 +164,7 @@ const SearchAlbums = ({ i18n, t }) => {
                     <Col xs={12} sm={6}>
                         <form className="form float-right" onSubmit={getNewArtistsAlbums}>
                             <input className="input" type="text" name="query"
+                                aria-label={t('search_btn')}
                                 placeholder={t('search_placeholder')}
                                 onChange={onChangeQuery}
                                 ref={searchBarRef}

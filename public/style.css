@@ -6,6 +6,10 @@ html {
     box-sizing: border-box;
 }
 
+.link {
+    color: rgb(79, 79, 226);
+}
+
 body {
     margin: 0;
     padding: 0;
