@@ -12,5 +12,6 @@
     "artists": "Artist(s)",
     "listen": "Listen to this album on ",
     "copy": "copy hex codes!",
-    "copied": "copied!"
+    "copied": "copied!",
+    "ver_mais": "fetch more"
 }
