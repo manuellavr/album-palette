@@ -1,6 +1,6 @@
 import React from "react";
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Element, scroller, animateScroll as scroll } from 'react-scroll';
 import { withTranslation, Trans } from "react-i18next";
 import { Container, Row, Col } from 'react-bootstrap';
@@ -11,10 +11,17 @@ import { GET_IMAGE_COLORS_URL, SPOTIFY_TOKEN_REQUEST_URL, SPOTIFY_WEB_API_URL } 
 
 const SearchAlbums = ({ i18n, t }) => {
 
+    const PAGE_LIMIT = 28
+    const searchBarRef = useRef(null)
     const [query, setQuery] = useState('')
     const [albums, setAlbums] = useState([])
     const [accessToken, setAccessToken] = useState('')
     const [isPTBR, setIsPTBR] = useState(true)
+    const [currentPage, setCurrentPage] = useState({
+        total: 0,
+        offset: 0,
+        hasNext: false
+    })
 
     useEffect(() => {
         getNewToken();
@@ -44,12 +51,13 @@ const SearchAlbums = ({ i18n, t }) => {
             })
     }
 
-    const searchAlbums = (e) => {
+    const searchAlbums = (offset, fetchingNew) => {
 
-        e.preventDefault();
         console.log(query)
+        const searchUrl = `https://api.spotify.com/v1/search?q=${query}&type=album&offset=${offset}&limit=${PAGE_LIMIT}`
 
-        const searchUrl = `https://api.spotify.com/v1/search?q=${query}&type=album&limit=28`
+        console.log(searchUrl)
+
         const searchHeader = {
             headers: {
                 'Content-Type': 'application/json',
@@ -59,20 +67,50 @@ const SearchAlbums = ({ i18n, t }) => {
 
         axios.get(searchUrl, searchHeader)
             .then(res => {
-                setAlbums(res.data.albums.items)
-                setQuery("")
 
-                scroller.scrollTo('results', {
-                    duration: 700,
-                    delay: 120,
-                    smooth: true,
-                    offset: 85
-                })
+                console.log(res)
+
+                setAlbums(prev => prev.concat(res.data.albums.items))
+
+                setCurrentPage(prev => ({
+                    total: res.data.albums.total,
+                    offset: prev.offset + PAGE_LIMIT,
+                    hasNext: res.data.albums.next === null ? false : true
+                }))
+
+                if (fetchingNew) {
+                    scroller.scrollTo('results', {
+                        duration: 700,
+                        delay: 120,
+                        smooth: true,
+                        offset: 85
+                    })
+                }
             })
             .catch(err => {
                 console.error(err)
                 getNewToken();
             })
+    }
+
+    const getNewArtistsAlbums = (e) => {
+
+        e.preventDefault();
+
+        setAlbums([])
+        setCurrentPage({
+            limit: 28,
+            total: 0,
+            offset: 0,
+            hasNext: true
+        })
+        searchBarRef.current.value = ""
+        searchAlbums(0, true)
+    }
+
+    const fetchMore = (e) => {
+        e.preventDefault();
+        searchAlbums(currentPage.offset, false)
     }
 
     const onChangeQuery = (e) => {
@@ -115,8 +153,8 @@ const SearchAlbums = ({ i18n, t }) => {
                         <p className="large-txt">{t('main_txt')}</p>
                         <p className="medium-txt">
                             <Trans t={t} i18nKey="text">
-                                Um site desenvolvido com a <a href={SPOTIFY_WEB_API_URL} target="__blank">
-                                API Web do Spotify</a> e o pacote <a href={GET_IMAGE_COLORS_URL} target="__blank">get-image-colors</a>
+                                Um site desenvolvido com a <a className="link" href={SPOTIFY_WEB_API_URL} target="__blank">
+                                    API Web do Spotify</a> e o pacote <a className="link" href={GET_IMAGE_COLORS_URL} target="__blank">get-image-colors</a>
                             </Trans>
                         </p>
                         <br />
@@ -124,10 +162,12 @@ const SearchAlbums = ({ i18n, t }) => {
                         <img className="img-reduced" src={album} alt={t('alt.art')}></img>
                     </Col>
                     <Col xs={12} sm={6}>
-                        <form className="form float-right" onSubmit={searchAlbums}>
+                        <form className="form float-right" onSubmit={getNewArtistsAlbums}>
                             <input className="input" type="text" name="query"
+                                aria-label={t('search_btn')}
                                 placeholder={t('search_placeholder')}
-                                value={query} onChange={onChangeQuery}
+                                onChange={onChangeQuery}
+                                ref={searchBarRef}
                             />
                             <button className="button" type="submit">{t('search_btn')}</button>
                         </form>
@@ -140,11 +180,20 @@ const SearchAlbums = ({ i18n, t }) => {
                 </Element>
 
                 <Row className="center-content">
-                    {albums.length > 0 ? 
-                        <button className="scroll-btn" onClick={scrollToTop}>
-                            {t('scroll_btn')}
-                        </button> 
-                    : null}
+                    {currentPage.hasNext && albums.length > 0 ?
+                        <button className="scroll-btn" onClick={fetchMore}>
+                            {t('ver_mais')}
+                        </button>
+                        :
+                        (
+                            currentPage.offset > 0 ?
+                                <button className="scroll-btn" onClick={scrollToTop}>
+                                    {t('scroll_btn')}
+                                </button>
+                                :
+                                null
+                        )
+                    }
                 </Row>
             </Container>
         </>
