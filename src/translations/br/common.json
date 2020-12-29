@@ -1,6 +1,6 @@
 {
     "main_txt": "Se inspire em paletas de cores baseadas nas capas dos seus álbums favoritos",
-    "text": "Um site desenvolvido com a <1>API Web do Spotify</1> e a biblioteca <3>get-image-colors</3>",
+    "text": "Um site desenvolvido com a <1>API Web do Spotify</1> e o pacote <3>get-image-colors</3>",
     "alt": {
     	"art": "três quadrados coloridos com formas geométricas sobrepostas, simulando capas de álbum, cada um com suas respectivas paletas de cores embaixo.",
     	"copy": "ícone com duas folhas de papel representando uma cópia",

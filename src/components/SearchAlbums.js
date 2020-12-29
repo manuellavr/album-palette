@@ -7,6 +7,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import qs from 'qs';
 import album from '../imgs/palettes.png';
 import SearchResults from './SearchResults.js';
+import { GET_IMAGE_COLORS_URL, SPOTIFY_TOKEN_REQUEST_URL, SPOTIFY_WEB_API_URL } from '../constants';
 
 const SearchAlbums = ({ i18n, t }) => {
 
@@ -23,7 +24,7 @@ const SearchAlbums = ({ i18n, t }) => {
 
         const client_id = process.env.REACT_APP_CLIENT_ID;
         const client_secret = process.env.REACT_APP_CLIENT_SECRET;
-        const url = "https://accounts.spotify.com/api/token";
+        const url = SPOTIFY_TOKEN_REQUEST_URL;
         const body = {
             grant_type: 'client_credentials'
         }
@@ -114,8 +115,8 @@ const SearchAlbums = ({ i18n, t }) => {
                         <p className="large-txt">{t('main_txt')}</p>
                         <p className="medium-txt">
                             <Trans t={t} i18nKey="text">
-                                Um site desenvolvido com a <a href="https://developer.spotify.com/documentation/web-api/" target="__blank">
-                                    API Web do Spotify</a> e a biblioteca <a href="https://www.npmjs.com/package/get-image-colors" target="__blank">get-image-colors</a>
+                                Um site desenvolvido com a <a href={SPOTIFY_WEB_API_URL} target="__blank">
+                                API Web do Spotify</a> e o pacote <a href={GET_IMAGE_COLORS_URL} target="__blank">get-image-colors</a>
                             </Trans>
                         </p>
                         <br />

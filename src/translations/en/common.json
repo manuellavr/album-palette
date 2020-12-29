@@ -1,6 +1,6 @@
 {
     "main_txt": "Get inspired by color palettes based on your favorite albums' cover art",
-    "text": "A website developed with <1>Spotify's Web API</1> and the <3>get-image-colors</3> javascript library",
+    "text": "A website developed with <1>Spotify's Web API</1> and the <3>get-image-colors node.js package</3>",
     "alt": {
     	"art": "three colorful squares with geometric shapes on top simulating an album cover. their associated color palette is below each square.",
     	"copy": "icon with two paper sheets representing a copy",
