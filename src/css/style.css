@@ -1,17 +1,9 @@
-html {
-    font-size: 10px;
-}
-
 * {
     box-sizing: border-box;
 }
 
-.link {
-    color: rgb(79, 79, 226);
-}
-
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+html {
+    font-size: 10px;
 }
 
 body {
@@ -28,97 +20,20 @@ b {
     font-weight: 600 !important;
 }
 
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
 p {
     font-size: 1.6rem;
 }
 
-.large-txt {
-    font-size: 2.5rem;
-}
-
-.img-reduced {
-    width: 85%;
-    height: 50%;
-    margin-top: 40px;
-}
-
-.front-page {
-    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #DDDBD8;
-    min-height: 100vh;
-}
-
-.medium-txt {
-    font-size: 1.6rem;
-}
-
-.content-body {
-    margin-top: 40px;
-}
-
-.palette {
-    padding-top: 10px;
-    position: absolute;
-    bottom: 40px;
-}
-
-.palette__color {
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    margin-right: 2px;
-    margin-left: 2px;
-    display: inline-block;
-    color: white;
-    font-size: 1rem;
-}
-
-.title {
-    font-size: 4.4rem;
-    text-align: left
-}
-
-.form {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    grid-gap: 1rem;
-    align-items: center;
-    width: 100%;
-}
-
-.label {
-    font-size: 1.2rem;
-    margin-bottom: 0.2rem;
-    text-transform: uppercase;
-}
-
-.navbar {
-    padding-bottom: 40px;
-}
-
-.input {
-    font-size: 1.6rem;
-    padding: 0.5rem 2rem;
-    line-height: 2.8rem;
-    border-radius: 20px;
-    border: 1px solid #ddd;
-    width: 40rem;
-    margin-bottom: 1rem;
-}
-
-.input:focus {
-    color: #495057;
-    background-color: #fff;
-    border-color: #80bdff;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
-}
-
 .button {
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: #3a3d3d;
     color: white;
     padding: 0.5rem 1rem;
     line-height: 2.8rem;
-    border: 1px solid rgba(0, 0, 0, 0.75);
+    border: none;
     border-radius: 20px;
     font-size: 1.5rem;
     cursor: pointer;
@@ -131,7 +46,7 @@ p {
     background-color: rgba(0, 0, 0, 0.85);
 }
 
-.button:focus {
+.button:focus, .scroll-btn:focus {
     outline: none;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
 }
@@ -163,7 +78,6 @@ p {
 }
 
 .button--see:focus,
-.scroll-btn:focus,
 .button--lang:focus {
     outline: none;
 }
@@ -210,17 +124,105 @@ p {
     align-items: center;
 }
 
+.content-body {
+    margin-top: 40px;
+}
+
+.img-reduced {
+    width: 85%;
+    margin-top: 40px;
+}
+
+.front-page {
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #DDDBD8;
+    min-height: 100vh;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-gap: 1rem;
+    align-items: center;
+    width: 100%;
+}
+
+
+.input {
+    font-size: 1.6rem;
+    padding: 0.5rem 2rem;
+    line-height: 2.8rem;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    width: 40rem;
+    margin-bottom: 1rem;
+}
+
+.input:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+}
+
+
+.label {
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+    text-transform: uppercase;
+}
+
+.large-txt {
+    font-size: 2.5rem;
+}
+
+.link {
+    color: rgb(55, 97, 235);
+    font-weight: 600;
+}
+
+.medium-txt {
+    font-size: 1.6rem;
+}
+
+.navbar {
+    padding-bottom: 40px;
+}
+
+.palette {
+    padding-top: 10px;
+    position: absolute;
+    bottom: 40px;
+}
+
+.palette__color {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    margin-right: 2px;
+    margin-left: 2px;
+    display: inline-block;
+    color: white;
+    font-size: 1rem;
+}
+
+.title {
+    font-size: 4.4rem;
+    text-align: left
+}
+
+
 .results {
     padding-top: 80px;
 }
 
 .scroll-btn {
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color:#3a3d3d;
     color: white;
     padding: 1rem 1rem;
     margin-top: 10px;
     margin-bottom: 30px;
-    border: 1px solid rgba(0, 0, 0, 0.75);
+    border: none;
     border-radius: 30px;
     font-size: 1.5rem;
     cursor: pointer;

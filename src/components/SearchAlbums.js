@@ -4,21 +4,19 @@ import { useState, useEffect, useRef } from 'react';
 import { Element, scroller, animateScroll as scroll } from 'react-scroll';
 import { withTranslation, Trans } from "react-i18next";
 import { Container, Row, Col } from 'react-bootstrap';
-import { GET_IMAGE_COLORS_URL, SPOTIFY_TOKEN_REQUEST_URL, SPOTIFY_WEB_API_URL } from '../constants';
+import { GET_IMAGE_COLORS_URL, SPOTIFY_TOKEN_REQUEST_URL, SPOTIFY_WEB_API_URL, PAGE_LIMIT } from '../constants';
 import qs from 'qs';
 import album from '../imgs/palettes.png';
 import SearchResults from './SearchResults.js';
 
 const SearchAlbums = ({ i18n, t }) => {
 
-    const PAGE_LIMIT = 28
     const searchBarRef = useRef(null)
     const [query, setQuery] = useState('')
     const [albums, setAlbums] = useState([])
     const [accessToken, setAccessToken] = useState('')
     const [isPTBR, setIsPTBR] = useState(true)
     const [currentPage, setCurrentPage] = useState({
-        total: 0,
         offset: 0,
         hasNext: false
     })
@@ -65,6 +63,16 @@ const SearchAlbums = ({ i18n, t }) => {
         axios.get(searchUrl, searchHeader)
             .then(res => {
 
+                if(fetchingNew)
+                    setAlbums(res.data.albums.items)
+                else
+                    setAlbums(prev => prev.concat(res.data.albums.items))
+
+                setCurrentPage(prev => ({
+                    offset: prev.offset + PAGE_LIMIT,
+                    hasNext: res.data.albums.next === null ? false : true
+                }))
+
                 if (fetchingNew) {
                     scroller.scrollTo('results', {
                         duration: 700,
@@ -73,15 +81,6 @@ const SearchAlbums = ({ i18n, t }) => {
                         offset: 85
                     })
                 }
-                
-                setAlbums(prev => prev.concat(res.data.albums.items))
-
-                setCurrentPage(prev => ({
-                    total: res.data.albums.total,
-                    offset: prev.offset + PAGE_LIMIT,
-                    hasNext: res.data.albums.next === null ? false : true
-                }))
-
             })
             .catch(err => {
                 console.error(err)
@@ -93,14 +92,13 @@ const SearchAlbums = ({ i18n, t }) => {
 
         e.preventDefault();
 
-        setAlbums([])
+        searchBarRef.current.value = ""
         setCurrentPage({
             limit: 28,
             total: 0,
             offset: 0,
             hasNext: true
         })
-        searchBarRef.current.value = ""
         searchAlbums(0, true)
     }
 
