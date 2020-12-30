@@ -4,10 +4,10 @@ import { useState, useEffect, useRef } from 'react';
 import { Element, scroller, animateScroll as scroll } from 'react-scroll';
 import { withTranslation, Trans } from "react-i18next";
 import { Container, Row, Col } from 'react-bootstrap';
+import { GET_IMAGE_COLORS_URL, SPOTIFY_TOKEN_REQUEST_URL, SPOTIFY_WEB_API_URL } from '../constants';
 import qs from 'qs';
 import album from '../imgs/palettes.png';
 import SearchResults from './SearchResults.js';
-import { GET_IMAGE_COLORS_URL, SPOTIFY_TOKEN_REQUEST_URL, SPOTIFY_WEB_API_URL } from '../constants';
 
 const SearchAlbums = ({ i18n, t }) => {
 
@@ -53,10 +53,7 @@ const SearchAlbums = ({ i18n, t }) => {
 
     const searchAlbums = (offset, fetchingNew) => {
 
-        console.log(query)
         const searchUrl = `https://api.spotify.com/v1/search?q=${query}&type=album&offset=${offset}&limit=${PAGE_LIMIT}`
-
-        console.log(searchUrl)
 
         const searchHeader = {
             headers: {
@@ -68,16 +65,6 @@ const SearchAlbums = ({ i18n, t }) => {
         axios.get(searchUrl, searchHeader)
             .then(res => {
 
-                console.log(res)
-
-                setAlbums(prev => prev.concat(res.data.albums.items))
-
-                setCurrentPage(prev => ({
-                    total: res.data.albums.total,
-                    offset: prev.offset + PAGE_LIMIT,
-                    hasNext: res.data.albums.next === null ? false : true
-                }))
-
                 if (fetchingNew) {
                     scroller.scrollTo('results', {
                         duration: 700,
@@ -86,6 +73,15 @@ const SearchAlbums = ({ i18n, t }) => {
                         offset: 85
                     })
                 }
+                
+                setAlbums(prev => prev.concat(res.data.albums.items))
+
+                setCurrentPage(prev => ({
+                    total: res.data.albums.total,
+                    offset: prev.offset + PAGE_LIMIT,
+                    hasNext: res.data.albums.next === null ? false : true
+                }))
+
             })
             .catch(err => {
                 console.error(err)
